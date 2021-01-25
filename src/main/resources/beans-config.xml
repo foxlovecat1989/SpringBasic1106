@@ -24,5 +24,65 @@
         <constructor-arg value="Anita" index="0" type="java.lang.String" />
         <constructor-arg value="18" index="1" type="java.lang.Integer" />
     </bean>
-
+    
+    <!-- 使用 p 命名空間方法注入 -->
+    <bean id="s4" 
+          class="com.mycompany.springbasic1106.di.Student"
+          p:name="Tom"
+          p:age="20"
+    />
+    
+    <!-- 使用 c 命名空間建構子注入 -->
+    <bean id="s5" 
+          class="com.mycompany.springbasic1106.di.Student"
+          c:name="Jo"
+          c:age="21"
+    />
+    
+    <!-- 使用 xxx-method 配置 -->
+    <bean id="s6" 
+          class="com.mycompany.springbasic1106.di.Student"
+          init-method="init123"
+          destroy-method="destroy123"
+          c:name="Jane"
+          c:age="22"
+    />
+    
+    <!-- ref 參考注入 1 -->
+    <bean id="t1" class="com.mycompany.springbasic1106.di.Teacher" c:name="Happy"/>
+    <bean id="s7" class="com.mycompany.springbasic1106.di.Student">
+        <property name="name" value="Go" />
+        <property name="age" value="22" />
+        <property name="teacher" ref="t1" />
+    </bean>
+    <!-- ref 參考注入 2 -->
+    <bean id="t2" class="com.mycompany.springbasic1106.di.Teacher"/>
+    <bean id="s8" class="com.mycompany.springbasic1106.di.Student">
+        <property name="name" value="Go" />
+        <property name="age" value="22" />
+        <property name="teacher" ref="t2" />
+        <!-- 注入參考資料 -->
+        <property name="teacher.name" value="Lucky" />
+    </bean>
+    <!-- ref 參考注入 3 -->
+    <bean id="s9" class="com.mycompany.springbasic1106.di.Student">
+        <property name="name" value="諸葛亮" />
+        <property name="age" value="22" />
+        <property name="teacher">
+            <!-- ref 參考注入內部類別 -->
+            <bean class="com.mycompany.springbasic1106.di.Teacher" c:name="劉備" />
+        </property>
+    </bean>
+    
+     <!-- 集合注入 List/Set/Map -->
+    <bean id="t3" class="com.mycompany.springbasic1106.di.Teacher">
+        <property name="name" value="Helen" />
+        <!-- 班級 -->
+        <property name="cls">
+            <list> <!-- 可替換 <array> -->
+                <value>甲班</value>
+                <value>乙班</value>
+            </list>
+        </property>
+    </bean>
 </beans>
