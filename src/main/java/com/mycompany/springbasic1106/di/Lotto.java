@@ -56,7 +56,8 @@ public class Lotto {
     public void setNums(Set<Integer> nums) {
         this.nums = nums;
     }
-
+    
+    
     @Override
     public String toString() {
         return "Lotto{" + "amount=" + amount + ", begin=" + begin + ", end=" + end + ", nums=" + nums + '}';
