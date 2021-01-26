@@ -3,8 +3,9 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:c="http://www.springframework.org/schema/c"
        xmlns:p="http://www.springframework.org/schema/p"
-
+       xmlns:util="http://www.springframework.org/schema/util"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+       http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd
 ">
     <!-- 方法注入 -->
     <bean id="s1" class="com.mycompany.springbasic1106.di.Student">
@@ -74,7 +75,7 @@
         </property>
     </bean>
     
-     <!-- 集合注入 List/Set/Map -->
+      <!-- 集合注入 List/Set/Map -->
     <bean id="t3" class="com.mycompany.springbasic1106.di.Teacher">
         <property name="name" value="Helen" />
         <!-- 班級 -->
@@ -92,5 +93,39 @@
                 <ref bean="s7" />
             </set>
         </property>
+        <!-- 科目 -->
+        <property name="subjects">
+            <map>
+                <entry>
+                    <key>
+                        <value>國文</value>
+                    </key>
+                    <value>3</value>
+                </entry>
+                <entry>
+                    <key>
+                        <value>數學</value>
+                    </key>
+                    <value>2</value>
+                </entry>
+                <entry>
+                    <key>
+                        <value>英文</value>
+                    </key>
+                    <value>1</value>
+                </entry>
+            </map>
+        </property>
     </bean>
+    
+    <util:set id="students">
+        <ref bean="s1" />
+        <ref bean="s5" />
+        <ref bean="s7" />
+    </util:set>
+    <bean id="t4" class="com.mycompany.springbasic1106.di.Teacher">
+        <property name="name" value="Helen" />
+        <property name="students" ref="students" />
+    </bean>
+    
 </beans>
