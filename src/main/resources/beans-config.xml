@@ -128,4 +128,24 @@
         <property name="students" ref="students" />
     </bean>
     
+    <!-- 工廠模式 FactoryBean -->
+    <bean id="lotto" class="com.mycompany.springbasic1106.di.LottoFactory" />
+    
+    <!-- Bean 的作用域scope : prototype, singleton, request, session -->
+    <bean id="lotto2" 
+          class="com.mycompany.springbasic1106.di.Lotto"
+          scope="singlerton"
+          c:amount="5"
+          c:begin="1"
+          c:end="39"
+    />
+    
+    <bean id="lotto3" 
+          class="com.mycompany.springbasic1106.di.Lotto"
+          scope="prototype"
+          p:amount="5"
+          p:begin="1"
+          p:end="39">
+        <property name="nums" ref="nums" />
+    </bean>
 </beans>
